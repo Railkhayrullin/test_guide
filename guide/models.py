@@ -4,8 +4,8 @@ import datetime
 
 class Guide(models.Model):
     """Справочник"""
-    name = models.CharField('наименование', max_length=255, db_index=True)
-    short_name = models.CharField('короткое наименование', max_length=128)
+    name = models.CharField('наименование', max_length=255)
+    short_name = models.SlugField('короткое наименование', max_length=64)
     description = models.TextField('описание')
     version = models.CharField('версия', max_length=64, unique=True)
     date = models.DateField('дата начала действия справочника этой версии', default=datetime.date.today)
