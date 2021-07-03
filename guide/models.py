@@ -5,17 +5,18 @@ import datetime
 class Guide(models.Model):
     """Справочник"""
     name = models.CharField('наименование', max_length=255)
-    short_name = models.SlugField('короткое наименование', max_length=64)
+    short_name = models.CharField('короткое наименование', max_length=64)
     description = models.TextField('описание')
-    version = models.CharField('версия', max_length=64, unique=True)
+    version = models.CharField('версия', max_length=64)
     date = models.DateField('дата начала действия справочника этой версии', default=datetime.date.today)
 
     def __str__(self):
         return self.name
 
     class Meta:
+        unique_together = ('name', 'version')
         verbose_name = 'справочник'
-        verbose_name_plural = 'справочники'
+        verbose_name_plural = 'справочники и элементы'
 
 
 class GuideElement(models.Model):
@@ -33,5 +34,6 @@ class GuideElement(models.Model):
         return self.element_value
 
     class Meta:
+        unique_together = ('element_code', 'guide')
         verbose_name = 'элемент справочника'
         verbose_name_plural = 'элементы справочника'

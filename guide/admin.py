@@ -3,22 +3,21 @@ from django.contrib import admin
 from guide.models import Guide, GuideElement
 
 
+class GuideElementInline(admin.TabularInline):
+    """Элемент справочника"""
+    model = GuideElement
+    extra = 0
+
+
 @admin.register(Guide)
 class GuideAdmin(admin.ModelAdmin):
     """Справочник"""
-    list_display = ('name', 'id', 'version', 'date')
+    list_display = ('name', 'version', 'date', 'id')
     list_display_links = ('name',)
     search_fields = ('name', 'id', 'version', 'date')
     list_filter = ('date',)
-
-
-@admin.register(GuideElement)
-class GuideElementAdmin(admin.ModelAdmin):
-    """Элемент справочника"""
-    list_display = ('element_code', 'id', 'guide')
-    list_display_links = ('element_code',)
-    search_fields = ('element_code', 'id', 'guide')
-    list_filter = ('element_code', 'id', 'guide')
+    inlines = [GuideElementInline, ]
+    ordering = ('name', '-version')
 
 
 admin.site.site_title = 'для ООО «КОМТЕК»'
