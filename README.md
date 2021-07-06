@@ -82,7 +82,8 @@ API эндпоинты:
 ```
 GET   /guide/                                                                                - получение списка справочников 
 GET   /guide/?date=*date                                                                     - получение списка справочников, актуальных на указанную дату 
-GET   /actual-element/*guide                                                                 - получение элементов заданного справочника текущей версии
+GET   /element/?guide=*guide                                                                 - получение элементов заданного справочника текущей версии
+GET   /element/?version=*version                                                             - получение элементов всех справочников указанной версии
 GET   /element/?guide=*guide&version=*version                                                - получение элементов заданного справочника указанной версии
 GET   /element-validation/?guide=*guide&code=*code&value=*value                              - валидация элементов заданного справочника текущей версии
 GET   /element-validation/?guide=*guide&version=*version&code=*code&value=*value&date=*date  - валидация элементов заданного справочника по указанной версии

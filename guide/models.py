@@ -21,12 +21,14 @@ class Guide(models.Model):
 
 class GuideElement(models.Model):
     """Элемент справочника"""
-    guide = models.ForeignKey(Guide,
-                              on_delete=models.CASCADE,
-                              related_name='guide_elements',
-                              verbose_name='родительский идентификатор',
-                              null=True,
-                              db_index=True)
+    guide = models.ForeignKey(
+        Guide,
+        on_delete=models.CASCADE,
+        related_name='guide_elements',
+        verbose_name='родительский идентификатор',
+        null=True,
+        db_index=True
+    )
     element_code = models.CharField('код элемента', max_length=64, blank=False)
     element_value = models.CharField('значение элемента', max_length=255, blank=False)
 
